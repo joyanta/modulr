@@ -9,3 +9,15 @@ e2e/**/*.js
 e2e/**/*.js.map
 _test-output
 _temp
+
+
+# IDEs and editors
+/.idea
+/.vscode
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+
+
