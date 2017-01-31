@@ -1,0 +1,33 @@
+<span><b>Search for an account by account name or ID</b></span>
+<form id="searchForm" (ngSubmit)="searchForAccounts(searchTerm)" class="navbar-form">
+  <div class="form-group">
+    <input [(ngModel)]="searchTerm" name="searchTerm" type="text" class="form-control search-override"
+      placeholder="Enter an account name or Id, or blank">
+  </div>
+  <button class="btn btn-default">
+    Go
+  </button>
+</form>
+
+<app-progress-bar [isRunningRequest]="isRunningRequest"></app-progress-bar>
+
+<table class="table table-condensed" *ngIf="foundAccounts && foundAccounts.length>0">
+  <thead>
+    <tr>
+      <th>Account ID</th>
+      <th>Account Name</th>
+      <th>Account Nummber</th>
+      <th>Sort code</th>
+      <th>Balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let account of foundAccounts">
+      <td>{{account.id}}</td>
+      <td>{{account.name}}</td>
+      <td>{{account.identifiers[0].accountNumber}}</td>
+      <td>{{account.identifiers[0].sortCode | sortcode}}</td>
+      <td>{{account.balance | currency: account.currency : true }}</td>
+    </tr>
+  </tbody>
+</table>
