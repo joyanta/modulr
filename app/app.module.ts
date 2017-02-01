@@ -8,14 +8,19 @@ import { AppComponent } from './app.component';
 import { appRoutes } from './routes';
 import {
   HeaderComponent,
-  FooterComponent
+  FooterComponent,
+  TabComponent,
+  TabsComponent
 } from './common-ui/index';
 import { NavBarComponent } from './nav/navbar.component';
-import { DashboardComponent } from './dashboard/index';
+import { DashboardComponent, CustomersComponent } from './dashboard/index';
 import { SearchService, SearchComponent } from './search/index';
 
 import { ProgressBarModule } from './progress-bar/progress-bar.module';
 import { SortCodePipe } from './shared/index';
+
+import { ReportComponent } from './report/report.component';
+
 
 @NgModule({
   imports: [
@@ -32,7 +37,11 @@ import { SortCodePipe } from './shared/index';
     NavBarComponent,
     SearchComponent,
     DashboardComponent,
-    SortCodePipe
+    SortCodePipe,
+    ReportComponent,
+    TabsComponent,
+    TabComponent,
+    CustomersComponent
   ],
   providers: [
     SearchService

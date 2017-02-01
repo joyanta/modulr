@@ -1,0 +1,36 @@
+<div class="row">
+  <span><b>Search for an account by account name or ID</b></span>
+</div>
+<div class="row">
+  <div class="col-sm-9" style="padding-left: 0px;">
+    <search (onSearch)="onSearch($event)"></search>
+  </div>
+  <div class="col-sm-3">
+    <a class="btn customer-button-override" href="#" role="button">Create new customer</a>
+  </div>
+</div>
+<div *ngIf="foundAccounts && foundAccounts.length > 0">
+  <app-progress-bar [isRunningRequest]="isRunningRequest"></app-progress-bar>
+  <div class="results-table">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th width="20%">Account ID</th>
+          <th width="20%">Account Name</th>
+          <th width="20%">Account Nummber</th>
+          <th width="20%">Sort code</th>
+          <th width="20%">Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let account of foundAccounts">
+          <td>{{account.id}}</td>
+          <td>{{account.name}}</td>
+          <td>{{account.identifiers[0].accountNumber}}</td>
+          <td>{{account.identifiers[0].sortCode | sortcode}}</td>
+          <td>{{account.balance | currency: account.currency : true }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

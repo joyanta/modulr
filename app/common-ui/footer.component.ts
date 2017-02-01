@@ -10,6 +10,9 @@ import { Component } from '@angular/core';
         height: 60px;
         background-color: #5C686D;
       }
+      .footer-logo-override {
+        height: 20px;
+      }
     `]
 })
 export class FooterComponent {

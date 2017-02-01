@@ -1,39 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { IAccount } from './account.model';
-import { SearchService } from './search.service';
+import { Component,  EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'search',
   templateUrl: 'app/search/search.component.html',
   styles: [`
       .search-override {width: 276px;}
+      .button-colour-override {
+        background-color: #1D70B7;
+        color: white;
+      }
   `]
 })
-export class SearchComponent implements OnInit {
-  errorMessage: string;
+export class SearchComponent  {
   searchTerm: string = '';
-  foundAccounts: IAccount[] = [];
-  isRunningRequest: boolean = false;
+  @Output() onSearch = new EventEmitter<string>();
 
-  constructor(private searchService: SearchService) {
-  }
-
-  ngOnInit() {
-    this.searchService.searching$.subscribe(
-      value => {
-        this.isRunningRequest = value;
-      },
-      error => {
-        this.errorMessage = <any>error;
-      }
-    );
-  }
-
-  searchForAccounts(text) {
-    this.searchService.searchForAccounts(text).subscribe(
-      items => {
-        this.foundAccounts = items;
-      }
-    );
+  searchForAccounts(text: string) {
+      this.onSearch.emit(text);
   }
 }
